@@ -67,6 +67,13 @@ sh ./tools/dist_train.sh configs/(resnet/swin_transformer)/xxxxxx.py 8 \
   --work-dir SCRATCH_DIR
 ```
 
+| Dataset | Command | 
+|:-----------:|:-----------:|
+|MSR-VTT-9k|`python train.py  --arch=clip_stochastic    --exp_name=MSR-VTT-9k --videos_dir={VIDEO_DIR}  --batch_size=32 --noclip_lr=3e-5 --transformer_dropout=0.3  --dataset_name=MSRVTT --msrvtt_train_file=9k     --stochasic_trials=20 --gpu='0' --num_epochs=5  --support_loss_weight=0.8`|
+|LSMDC|`python train.py --arch=clip_stochastic   --exp_name=LSMDC --videos_dir={VIDEO_DIR}  --batch_size=32 --noclip_lr=1e-5 --transformer_dropout=0.3 --dataset_name=LSMDC    --stochasic_trials=20 --gpu='0'  --num_epochs=5  --stochastic_prior=normal --stochastic_prior_std=3e-3`|
+|DiDeMo|`python train.py  --num_frame=12 --raw_video  --arch=clip_stochastic   --exp_name=DiDeMo --videos_dir={VIDEO_DIR} --batch_size=32 --noclip_lr=1e-5 --transformer_dropout=0.4 --dataset_name=DiDeMo     --stochasic_trials=20 --gpu='0' --num_epochs=5`| 
+
+
 ## Infer
 
 Download [trained weights](https://drive.google.com/drive/folders/1zCT10t09mXw-8iLqDvkmxR46lOD5dsv4?usp=sharing)
