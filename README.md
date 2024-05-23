@@ -7,7 +7,7 @@
 
 >
 > <p align="center">
-> <img width="940" src="resources/framework.png">
+> <img width="940" src="resources/framework.jpg">
 > </p>
 
 
