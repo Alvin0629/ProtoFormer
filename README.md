@@ -32,7 +32,7 @@ pip install imageio
 
 ## Dataset preparation
 
-By default `datasets.py` will search for the datasets in these locations. You can create symbolic links to wherever the datasets were downloaded in the `datasets` folder
+By default `datasets.py` will search for the datasets in these locations. You can use symbolic links for the datasets downloaded in the `datasets` folder.
 
 ```Shell
 ├── datasets
@@ -98,7 +98,7 @@ python infer_flow.py  --data_type DATA_NAME
 ```
 
 ## License
-ProtoFormer is under the Apache License.
+ProtoFormer is under the Apache License and is in an active state of update.
 
 
 ## Citation
