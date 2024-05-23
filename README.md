@@ -49,6 +49,19 @@ By default `datasets.py` will search for the datasets in these locations. You ca
         ├── frames_cleanpass
         ├── frames_finalpass
         ├── optical_flow
+    ├── HD1K
+        ├── hd1k_input
+        ├── hd1k_input
+    ├── VKITTI_depth
+        ├── vkitti_depth
+    ├── KITTI_Eigen
+        ├── train
+        ├── val
+        ├── test   
+    ├── MPI-Sintel-depth  
+        ├── train   
+        ├── test    
+
 ```
 
 
@@ -57,32 +70,31 @@ By default `datasets.py` will search for the datasets in these locations. You ca
 To train your own model, please apply the following command. Give on FlyingChair on optical flow as an example.
 
 ```
-sh ./tools/dist_train.sh configs/resnet/resnet50_8xb32_in1k_centroids.py 8 \
-  --work-dir SCRATCH_DIR 
+python -u train_ProtoFormer.py  --name chairs --stage chairs --validation chairs
 ```
 
-General case:
+More general case:
 
 ```
-sh ./tools/dist_train.sh configs/(resnet/swin_transformer)/xxxxxx.py 8 \
-  --work-dir SCRATCH_DIR
+python -u train_ProtoFormer.py  --name DATA_NAME --stage STAGE_NAME --validation VAL_NAME
 ```
 
 | Dataset | Command | 
 |:-----------:|:-----------:|
-|MSR-VTT-9k|`python train.py  --arch=clip_stochastic    --exp_name=MSR-VTT-9k --videos_dir={VIDEO_DIR}  --batch_size=32 --noclip_lr=3e-5 --transformer_dropout=0.3  --dataset_name=MSRVTT --msrvtt_train_file=9k     --stochasic_trials=20 --gpu='0' --num_epochs=5  --support_loss_weight=0.8`|
-|LSMDC|`python train.py --arch=clip_stochastic   --exp_name=LSMDC --videos_dir={VIDEO_DIR}  --batch_size=32 --noclip_lr=1e-5 --transformer_dropout=0.3 --dataset_name=LSMDC    --stochasic_trials=20 --gpu='0'  --num_epochs=5  --stochastic_prior=normal --stochastic_prior_std=3e-3`|
-|DiDeMo|`python train.py  --num_frame=12 --raw_video  --arch=clip_stochastic   --exp_name=DiDeMo --videos_dir={VIDEO_DIR} --batch_size=32 --noclip_lr=1e-5 --transformer_dropout=0.4 --dataset_name=DiDeMo     --stochasic_trials=20 --gpu='0' --num_epochs=5`| 
+|Sintel Flow|`python -u train_ProtoFormer.py  --name sintel --stage sintel --validation sintel`|
+|Sintel Depth|`python -u train_ProtoFormer.py --name depth_sintel_train --stage depth_sintel --validation depth_sintel --root DATA/MPI-Sintel-depth`|
+|KITTI Flow|`python -u train_ProtoFormer.py  --name kitti --stage kitti --validation kitti`| 
+|KITTI Depth|`python -u train_ProtoFormer.py --name depth_eigen_train --stage depth_eigen --validation depth_eigen --root DATA/KITTI_Eigen_depth`| 
 
 
-## Infer
+## Inference
 
-Download [trained weights](https://drive.google.com/drive/folders/1zCT10t09mXw-8iLqDvkmxR46lOD5dsv4?usp=sharing)
+Weights can be download [here].(https://drive.google.com/drive/folders/1OwrgMx9DtwOqdlF_ZoIDsBkw1B_zCCQm?usp=drive_link)
 
 ```
 # Single-gpu testing
-pip list | grep "mmcv\|mmcls\|^torch"
-python tools/test.py local_config_file.py model.pth --out result.pkl --metrics accuracy
+python infer_depth.py --data_type DATA_NAME
+python infer_flow.py  --data_type DATA_NAME
 ```
 
 ## License
@@ -94,11 +106,11 @@ ProtoFormer is under the Apache License.
 If you find the work is useful, please cite it as:
 
 ```
-@inproceedings{wang2023visual,
-  title={Visual recognition with deep nearest centroids},
-  author={Wang, Wenguan and Han, Cheng and Zhou, Tianfei and Liu, Dongfang},
-  booktitle={International Conference on Learning Representations (ICLR)},
-  year={2023}
+@inproceedings{han2024prototypical,
+  title={Prototypical Transformer As Unified Motion Learners},
+  author={Han, Cheng and Lu, Yawen and Sun, Guohao and Liang, James Chenhao and Cao, Zhiwen and Wang, Qifan and Guan, Qiang and Dianat, Sohail and Rao, Raghuveer and Geng, Tong and Tao, Zhiqiang and Liu, Dongfang},
+  booktitle={International Conference on Machine Learning},
+  year={2024}
 }
 ```
 
