@@ -92,7 +92,7 @@ python -u train_ProtoFormer.py  --name DATA_NAME --stage STAGE_NAME --validation
 Weights can be download [here].(https://drive.google.com/drive/folders/1OwrgMx9DtwOqdlF_ZoIDsBkw1B_zCCQm?usp=drive_link)
 
 ```
-# Single-gpu testing
+# Single-gpu infer demo
 python infer_depth.py --data_type DATA_NAME
 python infer_flow.py  --data_type DATA_NAME
 ```
