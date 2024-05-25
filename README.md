@@ -89,7 +89,7 @@ python -u train_ProtoFormer.py  --name DATA_NAME --stage STAGE_NAME --validation
 
 ## Inference
 
-Weights can be download [here].(https://drive.google.com/drive/folders/1OwrgMx9DtwOqdlF_ZoIDsBkw1B_zCCQm?usp=drive_link)
+Weights can be downloaded [here](https://drive.google.com/drive/folders/1OwrgMx9DtwOqdlF_ZoIDsBkw1B_zCCQm?usp=drive_link).
 
 ```
 # Single-gpu infer demo
